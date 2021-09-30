@@ -1,0 +1,134 @@
+html,
+body,
+#root,
+.App {
+  height: 100%;
+  width: 100%;
+  font-family: $poppins;
+  background-color: $bg-color;
+}
+
+.round {
+  border-radius: 100%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.bg-primary {
+  background-color: $bg-color !important;
+}
+
+.no-outline {
+  outline: none;
+}
+
+.no-style {
+  border: none;
+  outline: none;
+  appearance: none;
+  resize: none;
+}
+
+.small-text {
+  font-size: 0.8rem !important;
+}
+
+.one-text {
+  font-size: 1rem !important;
+}
+
+.medium-text {
+  font-size: 1.2rem !important;
+}
+
+.bigger-medium-text {
+  font-size: 1.4rem !important;
+}
+
+.big-text {
+  font-size: 1.6rem;
+}
+
+.huge-text {
+  font-size: 2rem;
+}
+
+.double-huge-text {
+  font-size: 4rem;
+}
+
+.text-muter {
+  color: #bdbdbd !important;
+}
+
+.font-italic {
+  font-style: italic;
+}
+
+.login-form {
+  width: 50%;
+  max-width: 500px;
+  border-radius: 10px;
+
+  box-shadow: 0 0 100px rgba($secondary, 0.2);
+  animation: slide-up 0.4s ease;
+}
+
+.input-line {
+  span {
+    padding: 0 10px;
+  }
+
+  input {
+    background-color: transparent !important;
+    padding: 5px 10px;
+    border-bottom: 2px solid rgba(black, 0.9);
+  }
+}
+
+.muted {
+  opacity: 0.2;
+}
+
+.menu-item {
+  position: relative;
+  text-decoration: none;
+  color: black;
+  font-size: 1em;
+  letter-spacing: 1px;
+  font-weight: 600;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+
+    height: 2px;
+    background-color: black;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.4s ease;
+  }
+
+  &:hover {
+    color: black;
+
+    &::after {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+}
+
+.slide-up {
+  opacity: 0;
+  animation: slide-up 0.5s ease forwards;
+}
+
+.spaced {
+  letter-spacing: 1px;
+}

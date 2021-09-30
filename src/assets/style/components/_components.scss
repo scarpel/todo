@@ -1,0 +1,320 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  .user-icon {
+    background-color: $secondary;
+    width: 30px;
+    height: 30px;
+  }
+
+  z-index: 50;
+}
+
+.main-layout {
+  padding-top: 80px;
+}
+
+.custom-button {
+  background-color: rgb(15, 15, 15);
+  border-radius: 5px;
+  color: white;
+  font-size: 0.9em;
+
+  padding: 17px 40px;
+
+  &.hollow {
+    background-color: transparent;
+    color: black;
+  }
+
+  &.outline {
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
+  }
+}
+
+.custom-textarea {
+  background-color: transparent;
+  height: 36px;
+}
+
+.custom-progress-bar {
+  position: relative;
+
+  background-color: rgba(0, 0, 0, 0.05);
+  width: 100%;
+  height: 15px;
+  border-radius: 30px;
+
+  overflow: hidden;
+
+  .progress-bar {
+    background: linear-gradient(90deg, rgba(107, 94, 200, 1) 0%, rgb(119, 103, 235) 100%);
+    height: 100%;
+    border-radius: inherit;
+
+    animation: progress 0.5s ease;
+  }
+}
+
+.todo-list {
+  min-height: 50%;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transform: scale(1);
+
+  animation: slide-left 0.5s ease-out forwards;
+
+  &:focus-within {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
+  }
+
+  transition: all 0.5s ease;
+
+  .check-item {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.check-item {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+
+  .todo-name {
+    width: 100%;
+    line-height: 1;
+    margin-top: 2px;
+  }
+
+  .checkbox {
+    position: relative;
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    border: 2px solid black;
+    background-color: transparent;
+
+    .check-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 60%;
+
+      fill: transparent;
+
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      stroke: white !important;
+      stroke-width: 30 !important;
+
+      transition: all 0.4s ease-out;
+    }
+
+    &.done {
+      background-color: black;
+
+      .check-icon {
+        stroke-dashoffset: 0;
+        transition: all 1.5s ease-out;
+      }
+    }
+  }
+}
+
+.all-todos {
+  position: relative;
+
+  .todos {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    min-height: 80vh;
+
+    .left {
+      .fixed-box {
+        position: fixed;
+        top: 30%;
+        width: 25%;
+
+        h1 {
+          font-size: 4em;
+          font-weight: 600;
+        }
+
+        p {
+          font-size: 1.3em;
+          line-height: 1.3;
+          opacity: 0.6;
+        }
+      }
+    }
+
+    .todo-cards {
+      align-content: flex-start !important;
+    }
+  }
+
+  &.apply-animation {
+    animation: fade-left 1s ease forwards;
+  }
+
+  @media (max-width: 800px) {
+    .todos {
+      grid-template-columns: 100% !important;
+      grid-template-rows: 1fr 1fr;
+
+      .left {
+        .fixed-box {
+          position: relative !important;
+          top: 25%;
+          width: 100% !important;
+          align-self: center;
+        }
+      }
+    }
+  }
+}
+
+.todo-card {
+  width: 200px;
+  height: 200px;
+  background-color: white;
+
+  transition: all 0.3s ease;
+
+  .name {
+    font-size: 1.2em;
+    font-weight: 600 !important;
+  }
+
+  .date {
+    opacity: 0.6;
+    letter-spacing: 1px;
+  }
+
+  .progress-container {
+    display: grid;
+    grid-template-columns: 40% 50%;
+  }
+
+  &:hover,
+  &.selected {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  &.selected {
+    opacity: 0;
+    transition: all 0s;
+  }
+
+  .container {
+    pointer-events: none;
+  }
+}
+
+.todo-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background-color: rgba(0, 0, 0, 0.3);
+  animation: show-modal 0.5s ease;
+
+  z-index: 1000;
+
+  .close-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+
+    z-index: 1000;
+  }
+
+  .todos {
+    opacity: 0;
+    animation: half-slide-left 0.3s ease 0.3s forwards;
+  }
+
+  .todo {
+    position: fixed;
+    background-color: white;
+    border-radius: 5px;
+
+    padding: 30px 30px;
+
+    animation: do 0.5s ease forwards;
+    transform-origin: center;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    .date {
+      letter-spacing: 1px;
+      margin-bottom: -6px !important;
+    }
+
+    .name {
+      font-size: 1.5em;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .custom-button {
+      opacity: 0;
+      animation: half-slide-left 0.3s ease 0.3s forwards;
+    }
+
+    .check-item {
+      .checkbox {
+        &.done {
+          background-color: $secondary;
+          border-color: $secondary;
+        }
+      }
+    }
+
+    @keyframes do {
+      to {
+        height: 50%;
+        width: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
+
+.menu-toggle {
+  position: relative;
+  border-radius: 50% !important;
+  width: 30px !important;
+  height: 30px !important;
+
+  .arrow {
+    position: absolute;
+    left: -90%;
+    top: 60%;
+
+    transform: translateY(-50%);
+  }
+}
+
+.purple-noise {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  pointer-events: none;
+  opacity: 0.2;
+}
